@@ -1,0 +1,33 @@
+/* Empty. Add your own CSS if you like */
+@font-face{
+  font-family:"Zawgyi-One";
+  src:local("Zawgyi-One"),url('fonts/ionic/fonts/zawgyione.eot');
+  src:local("Zawgyi-One"),url('fonts/ionic/fonts/zawgyione.eot#iefix') format("embedded-opentype"),
+  url('fonts/ionic/fonts/zawgyione.woff') format("woff"),
+  url('fonts/ionic/fonts/zawgyione.ttf') format("truetype"),
+  url('fonts/ionic/fonts/zawgyione.svg#zawgyi-oneregular') format("svg");
+}
+
+.remove_bottomtoppad{
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+
+.add_toppad{
+	padding-top: 15px;
+	padding-bottom: 0px;
+}
+
+input.valide {
+color: blue !important;
+}
+
+input.error {
+color: red !important;
+}
+
+input.correct {
+color: green !important;
+cursor: not-allowed !important;
+background: #EBE6DF !important;
+}

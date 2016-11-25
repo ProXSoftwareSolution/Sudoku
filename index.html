@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title></title>
+        <script src="js/jquery-2.0.3.min.js"></script>
+
+        <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+
+        <style type="text/css">
+
+        *{
+            font-family: 'Zawgyi-One'!important;   
+        }
+
+        </style>
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+        <script src="cordova.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+    <body ng-app="sudoku">
+
+    <script id="popup.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar-assertive">
+          <h1 class="title" ng-bind-html="modaltitle"></h1>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="card">
+            <div class="item item-text-warp" ng-bind-html="modaldescription">
+              
+            </div>
+          </div>
+        <button type="submit" class="button icon-center ion-arrow-left-b button-assertive button-full" ng-click="closemodal()">
+               Back
+              </button>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
+
+    <ion-pane ng-controller="SudokuController">
+      <ion-header-bar class="bar-assertive">
+        <h1 class="title">Pro Sudoku</h1>
+        <button class="button button-clear icon-right ion-person" ng-click="aboutus()"></button>
+      </ion-header-bar>
+      <ion-content>
+
+          <div class="button-bar padding">
+
+            <a class="button button-outline button-balanced" ng-click="generate()">
+              အသစ္
+            </a>
+
+            <a class="button button-positive" ng-click="solve()">
+              တြက္မည္
+            </a>
+
+            <a class="button button-calm" ng-click="init()">
+              ျပန္စမည္
+            </a>
+
+            <a class="button button-outline button-assertive" ng-click="clear()">
+              ရွင္းမည္
+            </a>
+          </div>
+
+          <div class="list card">
+                      
+
+                    <div class="col col-33" ng-class="{remove_bottomtoppad:$index%3!=0,add_toppad:$index%3==0}" ng-class="padding_class" ng-repeat="row in rows">
+          
+                      <div class="row">
+                        <div ng-repeat="column in row.columns" class="col col-33">
+
+                        <input style="padding-left: 10%;width: 100%;border: 2px solid black;" class="{[{ column.class }]} {[{check(row.id, column.id)}]}"
+                               type="number" name="cell-{[{row.id}]}{[{column.id}]}"
+                               value="column.value" ng-model="column.value" type="number"
+                               ng-maxlength="1" required 
+                               ng-click="possibilities(row.id, column.id)"
+                               ng-change="{[{ getValue(column.value, row.id, column.id) }]}">
+                          </div>
+
+                        </div>
+                    </div>
+
+          </div>
+
+      </ion-content>
+      <ion-footer-bar class="bar">
+        <div class="row remove_bottomtoppad">
+                       <div class="col col-33">
+                        ျဖစ္ႏူိင္ေခ်မ်ား - 
+                       </div>
+                       <div class="col">
+                          <button disabled="disabled" type="button" class="button button-outline button-assertive" ng-repeat="possibility in currentPossibilities">
+                              {[{possibility}]} 
+                          </button>
+                          <span ng-if="!currentPossibilities">မရွိ</span>
+                      </div>
+                      </div>
+      </ion-footer-bar>
+
+    </ion-pane>
+  </body>
+</html>
